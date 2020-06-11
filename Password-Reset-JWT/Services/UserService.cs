@@ -43,6 +43,7 @@ namespace Password_Reset_JWT.Services
                     return null;
 
                 aduserlist.UserID = aduser.SamAccountName;
+                aduserlist.UserMail = aduser.EmailAddress;
 
                 // return null if user not found           
             }
