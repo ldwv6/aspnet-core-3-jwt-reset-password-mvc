@@ -11,9 +11,4 @@ namespace Password_Reset_JWT.Models
         public string UserMail { get; set; }
         public string Token { get; set; }
     }
-
-    public class UserMail
-    {
-        public string Mail { get; set; }
-    }
 }

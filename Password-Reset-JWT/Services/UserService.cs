@@ -19,7 +19,6 @@ namespace Password_Reset_JWT.Services
         User Authenticate(string username);
     }
 
-
     public class UserService : IUserService
     {
         // users hardcoded for simplicity, store in a db with hashed passwords in production applications
@@ -57,7 +56,7 @@ namespace Password_Reset_JWT.Services
                 {
                     new Claim(ClaimTypes.Name, aduserlist.UserID.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = DateTime.UtcNow.AddHours(3),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);

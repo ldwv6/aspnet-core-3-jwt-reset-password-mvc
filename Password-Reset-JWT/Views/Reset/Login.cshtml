@@ -1,4 +1,4 @@
-﻿@model Password_Reset_JWT.Models.UserMail
+﻿@model Password_Reset_JWT.Models.User
 
 @{
     Layout = null;
@@ -55,8 +55,8 @@
             </div>
 
             <label for="inputEmail" class="sr-only">사번 입력</label>
-            <input type="text" id="inputEmail" class="form-control" asp-for="Mail" placeholder="사번 입력" required autofocus>
-            <span class="text-danger" asp-validation-for="Mail"></span>
+            <input type="text" id="inputEmail" class="form-control" asp-for="@Model.UserID" placeholder="사번 입력" required autofocus>
+            <span class="text-danger" asp-validation-for="@Model.UserID"></span>
 
             <div>
                 <label>

@@ -34,10 +34,10 @@ namespace Password_Reset_JWT.Controllers
         }
 
         [HttpPost]
-        public IActionResult ResetSand([FromForm] UserMail obj)
+        public IActionResult ResetSand([FromForm] User obj)
         {
 
-            var user = _userService.Authenticate(obj.Mail);
+            var user = _userService.Authenticate(obj.UserID);
 
             if (user == null)
                 return RedirectToAction("NoLoginID", "Reset");
@@ -71,7 +71,6 @@ namespace Password_Reset_JWT.Controllers
         {
             return View();
         }
-
 
         private static void SendNoticeMail(string addr, string token)
         {
