@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asp.net-Web-API-torutial-fo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPIDemo", "..\WebAPIDemo\WebAPIDemo.csproj", "{0B8C3F56-A5EB-471B-A158-2B21443F5BB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployreeService", "..\EmployreeService\EmployreeService.csproj", "{0729E915-A208-4268-BDCD-172672C53752}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeDataAccess", "..\EmployeeDataAccess\EmployeeDataAccess.csproj", "{84F04459-2BDC-457B-BC25-AEAAD38BBC8E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{0B8C3F56-A5EB-471B-A158-2B21443F5BB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B8C3F56-A5EB-471B-A158-2B21443F5BB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B8C3F56-A5EB-471B-A158-2B21443F5BB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0729E915-A208-4268-BDCD-172672C53752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0729E915-A208-4268-BDCD-172672C53752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0729E915-A208-4268-BDCD-172672C53752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0729E915-A208-4268-BDCD-172672C53752}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84F04459-2BDC-457B-BC25-AEAAD38BBC8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84F04459-2BDC-457B-BC25-AEAAD38BBC8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84F04459-2BDC-457B-BC25-AEAAD38BBC8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84F04459-2BDC-457B-BC25-AEAAD38BBC8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
