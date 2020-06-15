@@ -1,0 +1,6 @@
+@using Asp.net_Web_API_torutial_for_begginers.Areas.HelpPage.ModelDescriptions
+@model CollectionModelDescription
+@if (Model.ElementDescription is ComplexTypeModelDescription)
+{
+    @Html.DisplayFor(m => m.ElementDescription)
+}
