@@ -4,24 +4,28 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Net;
 using System.Net.Http;
+using System.Threading;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using EmployeeDataAccess;
 
 namespace EmployreeService.Controllers
 {
+    //[EnableCorsAttribute("*", "*", "*")]
     public class EmployeesController : ApiController
     {
-
         //GetSomthing 식으로 변경 가능 
         //완전히 변경하고 싶다면 [HttpGet] 와 같은 필터 사용 
 
-
+        [BasicAuthentication]
         public HttpResponseMessage Get(string gender = "All")
         {
 
+            string username = Thread.CurrentPrincipal.Identity.Name;
+
             using (dataEntities entities = new dataEntities())
             {
-                switch (gender.ToLower())
+                switch (username.ToLower())
                 {
                     case "all":
                         return Request.CreateResponse(HttpStatusCode.OK, entities.Employees.ToList<Employees>());
@@ -41,7 +45,7 @@ namespace EmployreeService.Controllers
         [HttpGet]
         public HttpResponseMessage LoadAllEmployeesById(int id)
         {
-            using (var data = new dataEntities())
+            using (dataEntities data = new dataEntities())
             {
                 var entity = data.Employees.FirstOrDefault(e => e.ID == id);
 

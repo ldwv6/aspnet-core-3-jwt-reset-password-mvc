@@ -14,7 +14,7 @@
                 $.ajax({
                     type: 'GET',
                     url: 'api/Employees',
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     success: function (data) {
                         ulEmployees.empty();
                         $.each(data, function (index, val) {
@@ -26,7 +26,7 @@
             });
 
             $('#btnClear').click(function () {
-                ulEmployees.empt();
+                ulEmployees.empty();
             });
         });
 

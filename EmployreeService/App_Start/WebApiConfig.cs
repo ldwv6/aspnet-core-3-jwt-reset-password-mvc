@@ -6,6 +6,8 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Runtime.Remoting.Messaging;
 using System.Web.Http;
+using System.Web.Http.Cors;
+using WebApiContrib.Formatting.Jsonp;
 
 namespace EmployreeService
 {
@@ -41,18 +43,28 @@ namespace EmployreeService
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.EnableCors();
+
+            //config.Filters.Add(new RequireHttpsAttribute());
+
+
+            //jsonp 를 사용한 크로스도메인 호출 
+            //var jsonpFormatter = new JsonpMediaTypeFormatter(config.Formatters.JsonFormatter);
+
+            //config.Formatters.Insert(0, jsonpFormatter);
+
 
             //config.Formatters.Add(new CutomJsonFormatter());
 
 
             /// xml 포맷터 지우기 결과적으로 json 만 
-            config.Formatters.Remove(config.Formatters.XmlFormatter);
+            //config.Formatters.Remove(config.Formatters.XmlFormatter);
 
 
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new System.Net.Http.Headers.MediaTypeHeaderValue("text/html"));
 
             /// 카멜케이스 속성으로 변경 exam) ID > id , FirstName > firstName
-    
+
             //config.Formatters.JsonFormatter.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             //config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
