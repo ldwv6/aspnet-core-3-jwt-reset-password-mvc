@@ -12,7 +12,7 @@ namespace EmployreeService
         {
             using(dataEntities entities = new dataEntities())
             {
-                return entities.Users.Any(user => user.UserName.Equals(StringComparison.OrdinalIgnoreCase) && user.Password == password);
+                return entities.Users.Any(user => user.UserName.Equals(username, StringComparison.OrdinalIgnoreCase) && user.Password.Equals(password, StringComparison.OrdinalIgnoreCase));
             }
         }
     }

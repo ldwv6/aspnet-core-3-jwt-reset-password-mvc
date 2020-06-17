@@ -36,7 +36,7 @@ namespace EmployreeService.Controllers
                         return Request.CreateResponse(HttpStatusCode.OK,
                            entities.Employees.Where(e => e.Gender.ToLower() == "female").ToList<Employees>());
                     default:
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Value for gender must be All, Male or Female." + gender + " is invaled");
+                        return Request.CreateResponse(HttpStatusCode.BadRequest, "Value for gender must be All, Male or Female." + gender + " is invaled");
 
                 }
             }
@@ -45,13 +45,15 @@ namespace EmployreeService.Controllers
         [HttpGet]
         public HttpResponseMessage LoadAllEmployeesById(int id)
         {
+     
+
             using (dataEntities data = new dataEntities())
             {
                 var entity = data.Employees.FirstOrDefault(e => e.ID == id);
 
                 if (entity != null)
                 {
-                    return Request.CreateResponse(HttpStatusCode.OK, entity);
+                    return Request.CreateResponse(HttpStatusCode.OK,entity);
 
                 }
                 else
