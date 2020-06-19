@@ -25,6 +25,7 @@ namespace Password_Reset_JWT.Services
 
         private readonly AppSettings _appSettings;
 
+
         public UserService(IOptions<AppSettings> appSettings)
         {
             _appSettings = appSettings.Value;
@@ -64,6 +65,42 @@ namespace Password_Reset_JWT.Services
 
             return aduserlist;
         }
+
+        public bool ChangePasswd(string userName, string passwd, string newpasswd, out string message)
+        {
+            bool bSuccess = false;
+            message = "";
+            try
+            {
+                using (var context = new PrincipalContext(ContextType.Domain, _appSettings.DomainControlerIP, _appSettings.fqdn, _appSettings.AdminID, _appSettings.Passwd))
+                {
+                    using (var user = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, userName))
+                    {
+   
+
+                        if (user.IsAccountLockedOut())
+                        {
+                            user.UnlockAccount();
+  
+                        }
+
+                        user.ChangePassword(passwd, newpasswd);
+
+                        user.Enabled = true;
+                        user.Save();
+
+                    }
+                }
+                bSuccess = true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;   
+            }
+
+            return bSuccess;
+        }
+
 
     }
 
