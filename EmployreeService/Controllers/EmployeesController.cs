@@ -11,7 +11,7 @@ using EmployeeDataAccess;
 
 namespace EmployreeService.Controllers
 {
-    //[EnableCorsAttribute("*", "*", "*")]
+    [EnableCorsAttribute("*", "*", "*")]
     public class EmployeesController : ApiController
     {
         //GetSomthing 식으로 변경 가능 

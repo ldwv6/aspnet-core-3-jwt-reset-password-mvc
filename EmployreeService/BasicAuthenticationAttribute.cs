@@ -17,7 +17,7 @@ namespace EmployreeService
         public override void OnAuthorization(HttpActionContext actionContext)
         {
 
-            if(actionContext.Request.Headers.Authorization == null)
+            if (actionContext.Request.Headers.Authorization == null)
             {
                 actionContext.Response = actionContext.Request.CreateResponse(HttpStatusCode.Unauthorized);
             }
@@ -30,7 +30,7 @@ namespace EmployreeService
                 string username = usernamePasswordArray[0];
                 string password = usernamePasswordArray[1];
 
-                if(EmployeesSecurity.Login(username, password))
+                if (EmployeesSecurity.Login(username, password))
                 {
                     Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(username), null);
                 }

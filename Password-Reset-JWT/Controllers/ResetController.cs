@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Password_Reset_JWT.Models;
 using Password_Reset_JWT.Services;
@@ -33,6 +36,12 @@ namespace Password_Reset_JWT.Controllers
             return View();
         }
 
+        [HttpGet]
+        public IActionResult TokenExpire()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult ResetSand([FromForm] User obj)
         {
@@ -51,7 +60,11 @@ namespace Password_Reset_JWT.Controllers
         {
             HttpClient httpCli = new HttpClient();
 
+
             httpCli.DefaultRequestHeaders.Add("Authorization", "Bearer " + id);
+
+            ViewBag.id = id;
+
 
             HttpResponseMessage message = httpCli.GetAsync("http://localhost:64980/reset/resetPasswd").Result;
 
@@ -62,16 +75,28 @@ namespace Password_Reset_JWT.Controllers
                 return View();
             }
 
-            return RedirectToAction("NoLoginID", "Reset");
+            return RedirectToAction("TokenExpire", "Reset");
         }
 
         [Authorize]
         [HttpGet]
         public IActionResult ResetPasswd()
         {
+
+            //https://stackoverflow.com/questions/38340078/how-to-decode-jwt-token >> 토근 클레임 정보 확인 방법
+
+            var principal = HttpContext.User;
+
+            var a = principal.Claims.SingleOrDefault(p => p.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value;
             return View();
         }
 
+        [HttpPost]
+        public HttpResponseMessage Test()
+        {
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
+   
         private static void SendNoticeMail(string addr, string token)
         {
             SmtpClient smtp = new SmtpClient("imail1.interpark.com");
@@ -80,12 +105,12 @@ namespace Password_Reset_JWT.Controllers
             msg.From = new MailAddress("ldap@interpark.com");
             msg.To.Add(addr);
             msg.Subject = string.Format("[LDAP] {0} 계정 패스워드 초기화 ", addr);
-         
+
             msg.Body = string.Format(
-                "<br> We heard that you lost your GitHub password.Sorry about that!" +
+                "<br> We heard that you lost your LDAP password.Sorry about that!" +
                 "<br><br> But don’t worry! You can use the following link to reset your password:" +
                 "<br><br><a href=\"http://localhost:64980/Reset/Pass/" + token + "\"" + "target=\"_blank\">http://localhost:64980/Reset/Pass/" + token + "</a>" +
-                "<br><br>If you don’t use this link within 3 hours, it will expire. To get a new password reset link, visit http://localhost:64980/Reset"
+                "<br><br>If you don’t use this link within 10 min, it will expire. To get a new password reset link, visit http://localhost:64980/Reset"
                 );
             msg.IsBodyHtml = true;
             smtp.Send(msg);

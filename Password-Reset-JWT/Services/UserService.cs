@@ -56,7 +56,7 @@ namespace Password_Reset_JWT.Services
                 {
                     new Claim(ClaimTypes.Name, aduserlist.UserID.ToString())
                 }),
-                Expires = DateTime.UtcNow.AddHours(3),
+                Expires = DateTime.UtcNow.AddMinutes(10),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
             var token = tokenHandler.CreateToken(tokenDescriptor);
