@@ -38,7 +38,7 @@ namespace EmpoyeeService
                 TokenEndpointPath = new PathString("/Token"),
                 Provider = new ApplicationOAuthProvider(PublicClientId),
                 AuthorizeEndpointPath = new PathString("/api/Account/ExternalLogin"),
-                AccessTokenExpireTimeSpan = TimeSpan.FromHours(1),
+                AccessTokenExpireTimeSpan = TimeSpan.FromSeconds(10),
                 // 프로덕션 모드에서 AllowInsecureHttp = false를 설정합니다.
                 AllowInsecureHttp = true
             };
