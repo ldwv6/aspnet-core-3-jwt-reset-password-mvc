@@ -31,6 +31,12 @@ namespace Password_Reset_JWT.Controllers
         }
 
         [HttpGet]
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+
+        [HttpGet]
         public IActionResult NoLoginID()
         {
             return View();
