@@ -22,6 +22,8 @@ Exception has been thrown by the target of an invocation.
 
 C:\Windows\System32\config\systemprofile\AppData\Local\ASP.NET\DataProtection-Keys
 
+### NOT ALLOWED METHOD
+https://hello-nanam.tistory.com/272
 
 
 
