@@ -26,5 +26,15 @@ C:\Windows\System32\config\systemprofile\AppData\Local\ASP.NET\DataProtection-Ke
 https://hello-nanam.tistory.com/272
 
 
+<system.webServer>
+    <modules>
+        <remove name="WebDAVModule" />
+    </modules>
+    <handlers>
+        <remove name="WebDAV" />
+    </handlers>
+</system.webServer>
+
+
 
 
