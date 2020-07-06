@@ -17,3 +17,6 @@ https://stackoverflow.com/questions/55159025/error-an-error-occurred-while-proce
 - DC 에 IIS 를 올려서 배포 할시 APP 기동 ID 변경해야 하는 이슈 아래 경로에 접근 불가로 인한 문제 
 
 C:\Windows\System32\config\systemprofile\AppData\Local\ASP.NET\DataProtection-Keys
+
+
+
